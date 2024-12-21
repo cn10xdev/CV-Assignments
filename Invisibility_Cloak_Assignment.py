@@ -57,11 +57,11 @@ def apply_cloak_effect(frame, initial_frame):
     Upperbound = np.array([hh, sh, vh])  # Set the upper bound HSV values
     Lowerbound = np.array([hl, sl, vl])  # Set the lower bound HSV values
     
-    mask = cv2.inRange(frame, Lowerbound, Upperbound)##First error is here somewhere
+    mask = cv2.inRange(frame, Lowerbound, Upperbound)
     inversemsk = cv2.bitwise_not(mask)
     
-    cloak = cv2.bitwise_or(initial_frame, initial_frame, mask=mask)#2nd
-    background = cv2.bitwise_xor(frame, frame, mask=inversemsk)#3rd
+    cloak = cv2.bitwise_or(initial_frame, initial_frame, mask=mask)
+    background = cv2.bitwise_xor(frame, frame, mask=inversemsk)
     final = cv2.bitwise_or(cloak, background)
     return cloak, background, final
 
